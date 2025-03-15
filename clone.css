@@ -4,7 +4,16 @@ html, body {
     max-width: 1000px;
     min-width: 550px;
     margin:0 auto;
-    
+    font-family: 'Arial', sans-serif;
+    color: whitesmoke
+  }
+
+  .back_button{
+    display: flex;
+  }
+
+  .back_button button{
+    background-color: rgb(23, 181, 23);
   }
   
   #map, #pano{
