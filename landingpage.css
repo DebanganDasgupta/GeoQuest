@@ -1,6 +1,8 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: rgb(1, 5, 20);
+    font-family: 'Arial', sans-serif;
 }
 
 .header {
@@ -14,28 +16,22 @@ body {
     align-items: center;
 }
 
-.logo{
+.logo {
     padding: 5px;
     text-align: center;
 }
 
-.logo img{
+.logo img {
     width: 110px;
     height: 70px;
 }
 
-.text_header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 40%;
-}
 
-.login{
+.login {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 30%;
+    margin-left: 85%;
 }
 
 @media screen and (max-width: 800px) {
@@ -44,25 +40,29 @@ body {
         font-size: 20px;
         width: 100vw;
     }
-    .text_header{
+
+    .text_header {
         margin-left: 0%;
     }
-    .login{
+
+    .login {
         margin-left: 0%;
     }
-    .darkmode{
+
+    .darkmode {
         margin-left: 0%;
     }
-    
+
 }
 
-.main_body{
+.main_body {
+    color: whitesmoke;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 5%;
     gap: 5%;
-  }
+}
 
 .globe {
     display: flex;
@@ -78,48 +78,60 @@ body {
     background: url(https://web.archive.org/web/20150807125159if_/http://www.noirextreme.com/digital/Earth-Color4096.jpg);
     border-radius: 50%;
     background-size: 610px;
-    box-shadow: inset 8px 36px 80px 36px rgb(0, 0, 0), inset -6px 0 12px 4px rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0px 36px 80px 15px rgb(0, 0, 0), inset 0px 0px 20px 5px rgba(255, 255, 255, 0.3);
     animation-name: rotate;
     animation-duration: 12s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     -webkit-animation-name: rotate;
-       -webkit-animation-duration: 12s;
-       -webkit-animation-iteration-count: infinite;
-       -webkit-animation-timing-function: linear;
-  }
+    -webkit-animation-duration: 12s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
 
-  @keyframes rotate {
+@keyframes rotate {
     from {
-      background-position: 0px 0px;
+        background-position: 0px 0px;
     }
-    to {
-      background-position: 610px 0px;
-    }
-  }
-  @-webkit-keyframes rotate {
-    from {
-      background-position: 0px 0px;
-    }
-    to {
-      background-position: 610px 0px;
-    }
-  }
 
- .main_body_text h1{
+    to {
+        background-position: 610px 0px;
+    }
+}
+
+@-webkit-keyframes rotate {
+    from {
+        background-position: 0px 0px;
+    }
+
+    to {
+        background-position: 610px 0px;
+    }
+}
+
+.main_body_text h1 {
     max-width: 500px;
     font-size: 40px;
- }
- .main_body_text_button button{
-    padding: 10px;
-    background-color: green;
-    box-shadow: 5px 5px 3px rgb(0, 0, 0);
-    border-radius: 10px;
- }
+}
 
- .main_body_text_button button:active{
+.main_body_text h3{
+    max-width: 500px;
+}
+
+.main_body_text_button button {
+    border: 2px solid black;
     padding: 10px;
     background-color: green;
-    box-shadow: 5px 4px 2px rgb(0, 0, 0);
+    box-shadow: 4px 4px 1px 1px green;
     border-radius: 10px;
- }
+}
+
+
+.main_body_text_button button:active {
+    border: 2px solid black;
+    padding: 10px;
+    background-color: green;
+    box-shadow: 4px 4px green;
+    transform: translateY(4px);
+    border-radius: 10px;
+}
