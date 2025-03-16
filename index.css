@@ -1,15 +1,17 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: rgb(1, 5, 20);
-    font-family: 'Arial', sans-serif;
+    background-image: url("https://www.ejiltalk.org/wp-content/uploads/2021/03/pexels-photo-110854.jpeg");
+    background-size: cover;
+    font-family: cursive; 
+    
+  
 }
 
 .header {
     width: 100%;
     height: 100px;
-    background-color: black;
-    color: white;
+    background-image: url("https://www.ejiltalk.org/wp-content/uploads/2021/03/pexels-photo-110854.jpeg");
     text-align: center;
     font-size: 30px;
     display: flex;
@@ -27,12 +29,6 @@ body {
 }
 
 
-.login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 85%;
-}
 
 @media screen and (max-width: 800px) {
     .header {
@@ -56,7 +52,7 @@ body {
 }
 
 .main_body {
-    color: whitesmoke;
+    color: aliceblue;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,16 +116,32 @@ body {
 
 .main_body_text_button button {
     border: 2px solid black;
-    padding: 10px;
+    padding: 15px 25px;
     background-color: green;
     box-shadow: 4px 4px 1px 1px green;
-    border-radius: 10px;
+    border-radius: 25px;
+    font-size: 18px; 
+    cursor: pointer;
+    transition: all 0.3s ease; 
 }
 
 
+.main_body_text_button button:hover {
+    background-color: rgb(115, 255, 0); 
+    box-shadow: 6px 6px 3px 2px green; 
+    transform: scale(1.1); 
+}
+
 .main_body_text_button button:active {
     border: 2px solid black;
-    padding: 10px;
+    padding: 15px 25px; 
+    background-color: green;
+    box-shadow: 4px 4px green;
+    transform: translateY(4px);
+    border-radius: 25px; 
+    font-size: 18px; 
+}
+
     background-color: green;
     box-shadow: 4px 4px green;
     transform: translateY(4px);
