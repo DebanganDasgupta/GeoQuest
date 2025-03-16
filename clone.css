@@ -1,5 +1,6 @@
 html,
 body {
+  background-image: url(background.jpeg);
   height: 100%;
   width: 100%;
   max-width: 1000px;
