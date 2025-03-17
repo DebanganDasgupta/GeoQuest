@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 />
     <title>GeoQuest</title>
     <link rel="stylesheet" href="index.css" />
 </head>
 <body>
     <audio id="gameAudio" loop>
-        <source src="assets/game-music-loop-3-144252 (2).wav" type="audio/mpeg" />
+        <source src="audio/game-music-loop-3-144252 (1).mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
     </audio>
 
@@ -37,17 +37,31 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const audio = document.getElementById('gameAudio');
-            audio.play().catch(error => {
-                console.error("Autoplay prevented:", error);
-                // Optionally show a button to let the user play the audio
-                const playButton = document.createElement('button');
-                playButton.textContent = 'Play Audio';
-                playButton.onclick = function() {
-                    audio.play();
-                    playButton.remove();
-                };
-                document.body.appendChild(playButton);
-            });
+
+            // Function to play audio with user interaction handling
+            function playAudio() {
+                audio.play().catch(error => {
+                    console.error("Autoplay prevented:", error);
+                    // Show play button if autoplay fails
+                    const playButton = document.createElement('button');
+                    playButton.textContent = 'Play Audio';
+                    playButton.onclick = function() {
+                        audio.play();
+                        playButton.remove();
+                    };
+                    document.body.appendChild(playButton);
+                });
+            }
+
+            // Attempt to play audio on page load (may be blocked by browser)
+            playAudio();
+
+            // Add a click listener to the entire body to ensure audio can play after user interaction.
+            document.body.addEventListener('click', function() {
+              if (audio.paused) {
+                playAudio();
+              }
+            }, { once: true }); // Remove listener after first click.
         });
     </script>
 </body>
