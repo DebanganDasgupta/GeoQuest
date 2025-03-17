@@ -1,22 +1,24 @@
 html,
 body {
-  height: 100%;
+  height: 100vh; /* changed from 100% to 100vh*/
   width: 100%;
-  max-width: 1000px;
-  min-width: 550px;
-  margin: 0 auto;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   color: rgb(255, 255, 255);
-  background-image: url('https://www.ejiltalk.org/wp-content/uploads/2021/03/pexels-photo-110854.jpeg');
+  background-image: url("https://www.ejiltalk.org/wp-content/uploads/2021/03/pexels-photo-110854.jpeg");
   background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  margin: 0; /* Changed margin to 0 */
 }
 
 .logo {
   padding: 5px;
-  text-align: left;
+  position: absolute; /* Position logo absolutely */
+  top: 0;
+  left: 0;
 }
 
 .logo img {
@@ -34,33 +36,15 @@ h1 {
 
 #round {
   color: white;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: 18px;
+  position: absolute; /* Position round absolutely */
+  top: 10px; /* adjust as needed */
+  right: 10px; /* adjust as needed */
 }
 
-.back_button {
-  display: flex;
-}
-
-.back_button button {
-  background-color: rgb(23, 181, 23);
-  color: white;
-  padding: 10px 20px;
-  font-size: 14px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.back_button button:hover {
-  background-color: rgb(18, 147, 18);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-  transform: translateY(-2px);
-}
-
-.back_button button {
-  background-color: rgb(23, 181, 23);
+.hidden-link {
+  display: none;
 }
 
 #map,
