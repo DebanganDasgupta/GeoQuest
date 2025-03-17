@@ -1,33 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GeoQuest</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
 </head>
-
 <body>
-    <audio controls  autoplay>
-        <source src="game-music-loop-3-144252.mp3">
-        your browser doesn't support audio
-        </audio>
+    <audio id="gameAudio" loop>
+        <source src="game-music-loop-3-144252.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+    </audio>
+
     <div class="header">
-        <div class="logo"><img src="assets/GeoQuest_Logo-removebg-preview.png" alt=""></div>
+        <div class="logo">
+            <img src="assets/GeoQuest_Logo-removebg-preview.png" alt="" />
+        </div>
     </div>
+
     <div class="main_body">
         <div class="globe" id="earth"></div>
         <div class="main_body_text">
             <div class="play">
-                <h1>Welcome to GeoQuest </h1>
-                <h3>Explore the world, guess the location, and challenge your geography skills!</h3>
+                <h1>Welcome to GeoQuest</h1>
+                <h3>
+                    Explore the world, guess the location, and challenge your geography
+                    skills!
+                </h3>
             </div>
             <div class="main_body_text_button">
-                <a href="clone.html"><button onclick="">Play now</button></a>
+                <a href="clone.html"><button>Play now</button></a>
             </div>
         </div>
     </div>
-</body>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('gameAudio');
+            audio.play().catch(error => {
+                console.error("Autoplay prevented:", error);
+                // Optionally show a button to let the user play the audio
+                const playButton = document.createElement('button');
+                playButton.textContent = 'Play Audio';
+                playButton.onclick = function() {
+                    audio.play();
+                    playButton.remove();
+                };
+                document.body.appendChild(playButton);
+            });
+        });
+    </script>
+</body>
 </html>
