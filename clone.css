@@ -1,89 +1,156 @@
-html, body {
-    height: 100%;
-    width: 100%;
-    max-width: 1000px;
-    min-width: 550px;
-    margin:0 auto;
-    
-  }
-  
-  #map, #pano{
-    border-style: solid;
-    border-width: 1px;
-  }
-  
-  #map {
-    float: left;
-    height: 40%;
-    width: 50%;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-right-width: .5px;
-  
-  }
-  
-  #pano {
-    float: left;
-    height: 40%;
-    width: 50%;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-left-width: 0px;
-  }
-  
-  
-  #result{
-    height: 25%;
-    width: 90%;
-    border-radius: 30px;
-    border-style: solid;
-    border-width: 1px;
-  }
-  
-  #location, #distance, #totaldistance{
-      font-size: 20px;
-      text-align: center;
-      font-family: Chalkduster, fantasy;
-  }
-  
-  #location, #distance {
-    display: inline-block;
-    margin-left: 20px;
-  }
-  
-  
-  #check, #next{
-    font-size: 15px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-radius: 20px;
-    width: 200px;
-  }
-  
-  #buttons, #info{
-    text-align: center;
-  }
-  
-  h1{
-    text-align: center;
-    font-family: Chalkduster, fantasy;
-  }
-  
-  #next{
-    margin-left: 100px;
-  }
-  
-  
-  #center{
-    text-align: center;
-  }
-  
-  #totaldistance{
-    bottom: 0;
-    width: 100%;
-  }
-  
-  #round {
-    font-family: Chalkduster, fantasy;
-    font-size: 15px;
-  }
+html,
+body {
+  height: 100vh;
+  width: 100%;
+  font-family: "Arial", sans-serif;
+  color: rgb(255, 255, 255);
+  background-image: url("https://www.ejiltalk.org/wp-content/uploads/2021/03/pexels-photo-110854.jpeg");
+  background-size: cover;
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  margin: 0;
+}
+
+.logo {
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 110px;
+  height: 70px;
+}
+
+h1 {
+  color: white;
+  font-family: cursive;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#round {
+  color: white;
+  font-family: "Arial", sans-serif;
+  font-size: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.hidden-link {
+  display: none;
+}
+
+#map,
+#pano {
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#map {
+  width: 40%;
+  height: 40%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-left-width: 0px;
+  margin-left: 90px;
+  margin-top: 20px; /* Added gap before map */
+}
+
+#info,
+#totaldistance {
+  color: white;
+  font-size: 16px;
+}
+
+#pano {
+  width: 40%;
+  height: 40%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-left-width: 0px;
+  margin-left: 60px;
+  margin-top: 20px; /* Added gap before panorama */
+}
+
+#result {
+  height: 20%;
+  width: 85%;
+  border-radius: 30px;
+  border-style: solid;
+  border-width: 1px;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+#location,
+#distance,
+#totaldistance {
+  font-size: 16px;
+  text-align: center;
+  font-family: Chalkduster, fantasy;
+}
+
+#location,
+#distance {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+#check,
+#next {
+  font-size: 15px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#check:hover,
+#next:hover {
+  background-color: #0056b3;
+}
+
+#buttons,
+#info {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#next {
+  margin-left: 450px;
+}
+
+#center {
+  text-align: center;
+}
+
+#totaldistance {
+  bottom: 0;
+  width: 100%;
+}
+
+#round {
+  font-family: Chalkduster, fantasy;
+  font-size: 15px;
+}
