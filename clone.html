@@ -19,6 +19,7 @@
     </div>
     <div id="map"></div>
     <div id="pano"></div>
+    <audio id="gameAudio" src="assets/game-music-loop-3-144252 (1).mp3" loop></audio>
 
     <div id="buttons" class="container">
       <div>
@@ -67,5 +68,49 @@
       defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVgXgtRbhYDNlKifUVNsP2VyXWkCwN6ng&callback=initialize"
     ></script>
+    <script>
+      // document.addEventListener('DOMContentLoaded', function() {
+      //     const audio = document.getElementById('gameAudio');
+      //     audio.play().catch(error => {
+      //         console.error("Autoplay prevented:", error);
+      //         // Optionally show a button to let the user play the audio
+      //         const playButton = document.createElement('button');
+      //         playButton.textContent = 'Play Audio';
+      //         playButton.onclick = function() {
+      //             audio.play();
+      //             playButton.remove();
+      //         };
+      //         document.body.appendChild(playButton);
+      //     });
+      // });
+      document.addEventListener('DOMContentLoaded', function() {
+  const audio = document.getElementById('gameAudio');
+
+  // Function to play audio
+  function playAudio() {
+      audio.play().catch(error => {
+          console.error("Autoplay prevented:", error);
+          // Show a button only if autoplay fails
+          if (!document.getElementById('playAudioBtn')) {
+              const playButton = document.createElement('button');
+              playButton.textContent = 'Play Audio';
+              playButton.id = 'playAudioBtn';
+              playButton.onclick = function() {
+                  audio.play();
+                  playButton.remove();
+              };
+              document.body.appendChild(playButton);
+          }
+      });
+  }
+
+  // Try playing audio when the user clicks anywhere
+  document.body.addEventListener('click', function() {
+      if (audio.paused) {
+          playAudio();
+      }
+  }, { once: true }); // Runs only once to prevent multiple event triggers
+});
+  </script>
   </body>
 </html>

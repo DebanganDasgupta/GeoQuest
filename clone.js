@@ -1,4 +1,5 @@
-
+/* jshint esversion: 6 */
+/* jshint node: true */
 'use strict';
 
 
@@ -9,7 +10,40 @@ var markers = [];
 var guess_coordinates = [];
 var true_location = [];
 var us_city_set = [4699066, 5809844, 4164138, 4440906,4894465, 2562501];
-var world_city_set =[3143244, 3599699, 1857910, 4853608, 323786];
+var world_city_set = [
+  { lat: 22.5448, lon: 88.3426 }, // Victoria Memorial, Kolkata
+  { lat: 22.5850, lon: 88.3466 }, // Howrah Bridge, Kolkata
+  { lat: 22.5626, lon: 88.3510 }, // Indian Museum, Kolkata
+  { lat: 22.6556, lon: 88.3575 }, // Dakshineswar Kali Temple, Kolkata
+  { lat: 22.5395, lon: 88.4072 },  // Science City, Kolkata
+  { lat: 22.5756, lon: 88.3642 }, // College Street
+  { lat: 22.4610, lon: 88.3915 }, // Meghnad Saha Institute of Technology
+  { lat: 22.5646, lon: 88.3433 }, // Eden Gardens
+  { lat: 22.5395, lon: 88.4072 },  // Science City
+  { lat: 21.8380, lon: 73.7191 }, // Statue of Unity
+  { lat: 27.1751, lon: 78.0421 }, // Taj Mahal
+  { lat: 18.9220, lon: 72.8347 }, // Gateway of India
+  { lat: 28.5245, lon: 77.1855 }, // Qutub Minar
+  { lat: 28.6129, lon: 77.2295 }, // India Gate
+  { lat: 30.7352, lon: 79.0669 }, // Kedarnath Temple
+  { lat: 28.6562, lon: 77.2410 }, // Red Fort
+  { lat: 28.5933, lon: 77.2507 }, // Humayun’s Tomb
+  { lat: 20.5519, lon: 75.7033 }, // Ajanta Caves
+  { lat: 20.0268, lon: 75.1791 }, // Ellora Caves
+  { lat: 12.3052, lon: 76.6551 }, // Mysore Palace
+  { lat: 25.3012, lon: 83.0063 }, // Varanasi Ghats
+  { lat: 40.4319, lon: 116.5704 }, // Great Wall of China
+  { lat: -22.9519, lon: -43.2105 }, // Christ the Redeemer
+  { lat: -13.1631, lon: -72.5450 }, // Machu Picchu
+  { lat: 41.8902, lon: 12.4922 }, // Colosseum
+  { lat: 30.3285, lon: 35.4444 }, // Petra
+  { lat: 20.6843, lon: -88.5678 }, // Chichen Itza
+  { lat: 29.9792, lon: 31.1342 }, // Great Pyramid of Giza
+  { lat: 40.6892, lon: -74.0445 }, // Statue of Liberty
+  { lat: 48.8584, lon: 2.2945 }, // Eiffel Tower
+  { lat: -33.8568, lon: 151.2153 }  // Sydney Opera House
+];
+// Kolkata, Howrah, Barrackpore, Durgapur, Asansol, Mumbai, Delhi, Bangalore, Chennai, Hyderabad
 var accumulated_distance = 0;
 var current_name = '';
 var distance_from_guess = [];
@@ -33,13 +67,15 @@ async function initialize() {
     document.getElementById("distance").innerHTML = ' '; 
 
 
-    var number = await Promise.all([getData(`https://api.openweathermap.org/data/2.5/weather?id=${randomLoc()}&APPID=2e35570eab59959f85e835dabdddc726`)]);
+    var locationData = randomLoc();
+    var number = await Promise.all([getData(`https://api.openweathermap.org/data/2.5/weather?lat=${locationData.lat}&lon=${locationData.lon}&APPID=2e35570eab59959f85e835dabdddc726`)]);
+
     true_location = [];
     true_location.push(number[0].coord.lat,number[0].coord.lon);
     current_name = (number[0].name + ", " + number[0].sys.country);
         
     
-    var luther = {lat: 53.1111245215, lng: -91.80256027484972};
+    var luther = {lat: 43.31613189259254, lng: -91.80256027484972};
   
     var map = new google.maps.Map(document.getElementById('map'), {
       center: luther,
@@ -76,7 +112,12 @@ async function initialize() {
          markers.push(marker);
          guess_coordinates.push(marker.getPosition().lat(),marker.getPosition().lng());
         }
-
+ /*
+    console.log("Guessed Location: " + guess_coordinates);
+    console.log("Actual Location: " + true_location);
+    console.log("current guess error: " + guess_error);
+    console.log("total guess error: " + accumulated_distance);
+   */
     
     var panorama = new google.maps.StreetViewPanorama(
         document.getElementById('pano'), {
@@ -175,6 +216,30 @@ function check(){
         repeat: '15px'
       }],
   });
+/*function randomLoc() {
+    index += 1;
+    if (index >= selected_cities.length) {
+        index = 0;
+        accumulated_distance = 0;
+
+        swal({
+            title: "Game Over!",
+            icon: "success",
+            text: "Your total error distance: " + accumulated_distance.toFixed(1) + " Miles!"
+        });
+
+        document.getElementById("totaldistance").innerHTML = 'Round Score: 0 Miles';
+        document.getElementById('round').innerHTML = "Round: 1/5";
+        document.getElementById("next").innerHTML = "Next Location";
+
+        return selected_cities[0]; // Reset to first city
+    } else {
+        document.getElementById("next").innerHTML = index === selected_cities.length - 1 ? "Finish Round" : "Next Location";
+        document.getElementById('round').innerHTML = "Round: " + (index + 1) + "/5";
+        return selected_cities[index];
+    }
+}
+*/
 
   flightPath.setMap(result_map);
   display_location();
@@ -205,35 +270,43 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 }
 
 
-var index = -1;
-function randomLoc(){
-    index += 1
-    if (index > world_city_set.length -1){
-        index = 0
-        //console.log(index)
-        document.getElementById("totaldistance").innerHTML = 'Round Score: 0 Miles'; 
-        swal({
-            title: "Thanks For playing!",
-            icon: "success",
-            text: "Your Guessing was only off by " + accumulated_distance.toFixed(1) + " Miles This Round!"
-        });
-        accumulated_distance = 0;
-        document.getElementById('round').innerHTML = "Round:  1/" + world_city_set.length
-        document.getElementById("next").innerHTML= "Next Location";
-        return[world_city_set[0]]
-
-    }else if(index == world_city_set.length -1){
-        document.getElementById("next").innerHTML= "Finish Round";
-        document.getElementById('round').innerHTML = "Round: " + (index + 1) + "/" + world_city_set.length
-        return[world_city_set[index]]
-    }else{
-        //console.log(index);
-        document.getElementById("next").innerHTML= "Next Location";
-        document.getElementById('round').innerHTML = "Round: " + (index + 1) + "/" + world_city_set.length
-        return[world_city_set[index]]
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
     }
-   
 }
+
+var index = -1;
+var maxRounds = 5; // Set max playable rounds
+shuffleArray(world_city_set); // Shuffle once at the start
+
+function randomLoc() {
+  index += 1;
+  
+  if (index >= maxRounds) {  // Limit to 5 rounds
+      swal({
+          title: "Game Over!",
+          icon: "success",
+          text: "Your total guess error: " + accumulated_distance.toFixed(1) + " Miles!"
+      });
+      accumulated_distance = 0;
+      index = -1; // Reset for next game
+      shuffleArray(world_city_set); // Reshuffle for a new game
+      document.getElementById("totaldistance").innerHTML = 'Round Score: 0 Miles'; 
+      document.getElementById('round').innerHTML = "Round: 0/" + maxRounds;
+      document.getElementById("next").innerHTML = "Play Again";
+      return null; // Stop the game
+  } 
+
+  document.getElementById("next").innerHTML = index === maxRounds - 1 ? "Finish Round" : "Next Location";
+  document.getElementById('round').innerHTML = "Round: " + (index + 1) + "/" + maxRounds;
+
+  return world_city_set[index % world_city_set.length]; // Return lat/lon object
+}
+
+
+
 
 function display_location(){
     document.getElementById("location").innerHTML = "Correct Location: " + current_name;
@@ -248,3 +321,5 @@ function disableButton(id){
 function enableButton(id){
   document.getElementById(id).disabled = false;
 }
+
+
