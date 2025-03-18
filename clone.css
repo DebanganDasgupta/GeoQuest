@@ -39,7 +39,7 @@ h1 {
 #round {
   color: white;
   font-family: "Arial", sans-serif;
-  font-size: 20px;
+  font-size: 60px;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -75,7 +75,7 @@ h1 {
 #info,
 #totaldistance {
   color: white;
-  font-size: 16px;
+  font-size: 26px;
 }
 
 #pano {
@@ -91,7 +91,7 @@ h1 {
 }
 
 #result {
-  height: 20%;
+  height: 30%;
   width: 85%;
   border-radius: 30px;
   border-style: solid;
@@ -103,9 +103,14 @@ h1 {
 #location,
 #distance,
 #totaldistance {
-  font-size: 16px;
+  font-size: 26px;
   text-align: center;
-  font-family: Chalkduster, fantasy;
+  color: aliceblue;
+  font-family: 'Poppins', sans-serif; /* Modern, clean font */
+  font-weight: 600; /* Bold for better emphasis */
+  letter-spacing: 1.5px; /* Adds spacing for a refined look */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+
 }
 
 #location,
@@ -152,5 +157,5 @@ h1 {
 
 #round {
   font-family: Chalkduster, fantasy;
-  font-size: 15px;
+  font-size: 25px;
 }

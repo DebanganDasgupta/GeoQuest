@@ -7,10 +7,7 @@
     <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-    <audio id="gameAudio" loop>
-        <source src="game-music-loop-3-144252 (1).mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-    </audio>
+    <audio id="gameAudio" src="assets/game-music-loop-3-144252 (1).mp3" loop></audio>
 
     <div class="header">
         <div class="logo">
@@ -35,20 +32,48 @@
     </div>
 
     <script>
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const audio = document.getElementById('gameAudio');
+        //     audio.play().catch(error => {
+        //         console.error("Autoplay prevented:", error);
+        //         // Optionally show a button to let the user play the audio
+        //         const playButton = document.createElement('button');
+        //         playButton.textContent = 'Play Audio';
+        //         playButton.onclick = function() {
+        //             audio.play();
+        //             playButton.remove();
+        //         };
+        //         document.body.appendChild(playButton);
+        //     });
+        // });
         document.addEventListener('DOMContentLoaded', function() {
-            const audio = document.getElementById('gameAudio');
-            audio.play().catch(error => {
-                console.error("Autoplay prevented:", error);
-                // Optionally show a button to let the user play the audio
+    const audio = document.getElementById('gameAudio');
+
+    // Function to play audio
+    function playAudio() {
+        audio.play().catch(error => {
+            console.error("Autoplay prevented:", error);
+            // Show a button only if autoplay fails
+            if (!document.getElementById('playAudioBtn')) {
                 const playButton = document.createElement('button');
                 playButton.textContent = 'Play Audio';
+                playButton.id = 'playAudioBtn';
                 playButton.onclick = function() {
                     audio.play();
                     playButton.remove();
                 };
                 document.body.appendChild(playButton);
-            });
+            }
         });
+    }
+
+    // Try playing audio when the user clicks anywhere
+    document.body.addEventListener('click', function() {
+        if (audio.paused) {
+            playAudio();
+        }
+    }, { once: true }); // Runs only once to prevent multiple event triggers
+});
     </script>
 </body>
 </html>
